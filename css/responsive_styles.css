@@ -1,0 +1,402 @@
+/* Responsive Styles - responsive_styles.css */
+
+/* Base & Typography */
+body {
+    font-size: 16px; /* Base font size for REM calculations if used */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+}
+
+/* Mobile-first: Default styles for small screens */
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+p, .btn, a, li, small, span { font-size: 1rem; } /* General text elements */
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Prevents extra space below images */
+}
+
+/* --- Navbar Adjustments (from index.html, generalized) --- */
+.navbar-brand h1 { /* Logo text in navbar */
+    font-size: 1.8rem; /* Smaller for mobile */
+}
+.navbar-brand img {
+    max-width: 150px; /* Smaller logo image */
+    height: auto;
+}
+
+.navbar-nav { /* Mobile menu items */
+    text-align: center;
+}
+.navbar-collapse { /* Container for mobile menu */
+    padding-top: 15px;
+    max-height: 80vh; /* Prevent menu from being too long */
+    overflow-y: auto; /* Allow scrolling if menu is very long */
+}
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* Ensure toggler is visible */
+}
+
+/* Hide top bar on mobile */
+.top-bar {
+    display: none;
+}
+
+/* --- Carousel Adjustments (from index.html, generalized) --- */
+.carousel-caption h1 {
+    font-size: 1.8rem; /* Reduce size of the headline for mobile */
+}
+.carousel-caption p {
+    font-size: 0.9rem; /* Reduce size of the paragraph for mobile */
+}
+.carousel-caption .btn {
+    font-size: 0.9rem; /* Adjust button size */
+    padding: 8px 18px; /* Adjust button padding */
+}
+.carousel-inner { /* Ensure carousel doesn't overflow */
+    overflow: hidden;
+}
+.carousel-caption { /* Adjust padding for smaller screens */
+    padding: 10px;
+    position: absolute; /* Already there, but ensure it's controlled */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Ensure caption doesn't overflow its container */
+}
+
+
+/* --- General Content Sections & Cards --- */
+/* Ensuring sections have appropriate padding on mobile */
+.py-5 { /* Bootstrap spacing class, adjust for mobile if too large */
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+}
+.my-5 {
+    margin-top: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
+}
+
+/* Example for card-like items if Bootstrap grid isn't enough */
+.causes-item, .service-item, .hosted-event-item, .team-item, .testimonial-item {
+    margin-bottom: 1.5rem; /* Ensure spacing when stacked */
+}
+
+/* --- Forms (for chat.html, contact.html) --- */
+form .form-control {
+    margin-bottom: 1rem; /* Space out form elements */
+}
+form button[type="submit"] {
+    width: 100%;
+}
+
+/* --- Embedded Maps (for chat.html, contact.html) --- */
+iframe[src*="google.com/maps"] {
+    max-width: 100%;
+    height: 300px; /* Adjust default mobile height */
+}
+
+/* --- Footer --- */
+.footer .row > div { /* Footer columns */
+    margin-bottom: 1.5rem; /* Stack and space footer columns */
+    text-align: center; /* Center text in footer columns on mobile */
+}
+.footer .d-flex { /* Social media icons container */
+    justify-content: center; /* Center icons if they are in a flex container */
+}
+.copyright .row > div {
+    text-align: center !important; /* Center copyright text */
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- Service Page: Achievement Circles (from service.html, integrated) --- */
+.circle {
+    width: 120px;
+    height: 120px;
+    border-width: 8px; /* Slightly smaller border for mobile */
+    margin-bottom: 1rem; /* Space below circles when stacked */
+}
+.circle-text {
+    font-size: 14px;
+}
+
+/* --- Medium devices (tablets, 768px and up) --- */
+@media (min-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    p, .btn, a, li, small, span { font-size: 1.05rem; }
+
+    .top-bar { /* Show top bar again */
+        display: flex;
+    }
+
+    .navbar-brand h1 {
+        font-size: 2rem; /* Restore for tablet */
+    }
+     .navbar-brand img {
+        max-width: 180px; 
+    }
+
+    .carousel-caption h1 {
+        font-size: 2.5rem; /* Restore for tablet */
+    }
+    .carousel-caption p {
+        font-size: 1.1rem; /* Restore for tablet */
+    }
+    .carousel-caption .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .carousel-caption {
+         width: 80%;
+    }
+
+
+    .py-5 { /* Restore Bootstrap spacing for tablet+ */
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+     .my-5 {
+        margin-top: 3rem !important;
+        margin-bottom: 3rem !important;
+    }
+
+    iframe[src*="google.com/maps"] {
+        height: 350px; 
+    }
+
+    .footer .row > div {
+        text-align: left; /* Default alignment for larger screens */
+    }
+    .footer .d-flex {
+        justify-content: flex-start;
+    }
+    .copyright .row > div {
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+    .copyright .text-md-start { text-align: left !important; }
+    .copyright .text-md-end { text-align: right !important; }
+
+    .circle { /* Restore circle size for tablet+ */
+        width: 150px;
+        height: 150px;
+        border-width: 10px;
+    }
+    .circle-text {
+        font-size: 16px;
+    }
+}
+
+/* --- Large devices (desktops, 992px and up) --- */
+@media (min-width: 992px) {
+    h1 { font-size: 3rem; } /* Default from index.html was 3rem for carousel h1 */
+    p, .btn, a, li, small, span { font-size: 1.1rem; }
+
+
+    .navbar-nav { /* Restore default navbar alignment */
+        text-align: left;
+    }
+    .navbar-collapse {
+        padding-top: 0;
+        max-height: none;
+        overflow-y: visible;
+    }
+     .navbar-brand img {
+        max-width: 200px; 
+    }
+
+    .carousel-caption h1 {
+        font-size: 3rem; /* Default from index.html */
+    }
+    .carousel-caption p {
+        font-size: 1.25rem; /* Default from index.html */
+    }
+     .carousel-caption {
+         width: 70%; /* Or whatever looks best on large screens */
+    }
+
+    iframe[src*="google.com/maps"] {
+        height: 400px; 
+    }
+}
+
+/* Specific overrides if WOW.js animations are too aggressive on mobile */
+@media (max-width: 767px) {
+    .wow {
+        /* Disable WOW.js animations on mobile if they cause layout shifts or performance issues */
+        /* animation-name: none !important; */
+        /* visibility: visible !important; */
+    }
+}
+
+/* --- Design Enhancements & Animations (Append to css/responsive_styles.css) --- */
+
+/* -- Links -- */
+a, .btn-link {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+a:hover, .btn-link:hover {
+    color: var(--bs-primary); /* Or a slightly lighter/darker shade of the link color */
+    text-decoration: none; /* Often preferred over underlines for modern designs */
+}
+
+/* -- Buttons -- */
+.btn {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* -- Interactive Card Elements -- */
+.causes-item, .service-item, .hosted-event-item, .team-item, .testimonial-item, .bg-light .p-4 { /* Added .bg-light .p-4 for generic styled boxes */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.causes-item:hover, .service-item:hover, .hosted-event-item:hover, .team-item:hover, .testimonial-item:hover, .bg-light .p-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* -- Navbar Link Enhancement -- */
+.navbar-dark .navbar-nav .nav-link {
+    transition: color 0.3s ease;
+}
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--bs-primary); /* Highlight color for active/hover navbar links */
+}
+
+/* -- Page Header Enhancement -- */
+.page-header {
+    background-attachment: fixed; /* Parallax-like effect for page headers if not already set by parallax.js */
+    transition: background-position 0.5s ease-out; /* Smoothness for parallax effect */
+}
+.page-header:hover {
+    background-position: 50% 5%; /* Slight shift on hover for page header background */
+}
+
+
+/* -- Animation for Call to Action Buttons (e.g., .btn-primary) -- */
+.btn-primary {
+    animation: pulse-primary 2s infinite;
+}
+
+@keyframes pulse-primary {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+/* If there are specific "Connect Us" buttons like in index.html */
+.btn-outline-primary.py-2.px-3[href="https://ig.me/m/torque7racing"] {
+     animation: pulse-outline-primary 2s infinite 0.5s; /* Delayed start */
+}
+
+@keyframes pulse-outline-primary {
+    0% {
+        box-shadow: 0 0 0 0 var(--bs-primary);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+
+/* --- Subtle Animation for Images on Hover --- */
+/* Apply class .img-hover-effect to the container of an image for this effect */
+.img-hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; 
+}
+.img-hover-effect img { /* Target image within the container */
+    transition: transform 0.3s ease; /* Ensure only image scales */
+}
+.img-hover-effect:hover img { 
+    transform: scale(1.05);
+}
+.img-hover-effect:hover { 
+     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+
+/* Spinner refinement - ensure it's centered and smooth */
+#spinner {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+#spinner.show { /* This class is used by the template's JS */
+    opacity: 1;
+    visibility: visible;
+}
+/* When hiding spinner (main.js likely removes 'show' or adds 'loaded' to body) */
+body.loaded #spinner, #spinner:not(.show) { 
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- Adjustments for specific image layouts --- */
+
+/* About Us decorative images */
+@media (max-width: 576px) { /* Extra small devices */
+    /* Targets the small decorative images in the About Us section based on their attributes */
+    img.position-absolute[src^="img/about-"][style*="width: 200px"] {
+        width: 120px !important; /* Reduce size */
+        height: 120px !important; /* Reduce size */
+    }
+    img.position-absolute[src="img/about-1.jpg"] { /* The main image in that block */
+        /* No change needed as it's w-100 h-100 */
+    }
+}
+
+@media (max-width: 400px) { /* Very small devices */
+    img.position-absolute[src^="img/about-"][style*="width: 200px"] { /* Original selector was for 200px, now it's 120px due to above rule */
+        /* Further reduce or hide if necessary. Let's reduce more. */
+        width: 80px !important;
+        height: 80px !important;
+    }
+    /* Example of how to hide them if they still cause issues:
+    img.position-absolute[src^="img/about-"][style*="width: 200px"] {
+        display: none !important;
+    }
+    */
+}
+
+
+/* Ensure testimonial avatars don't cause issues, even with inline styles */
+/* The .img-fluid class (max-width: 100%; height: auto;) and inline style for width/height 
+   can sometimes conflict if the parent is smaller. This ensures they don't exceed 100px. */
+.testimonial-item img.rounded-circle[style*="width: 100px"] {
+    min-width: 50px; /* Prevent from becoming too small if container forces it, though unlikely */
+    width: 100px !important; /* Re-assert, but max-width from img-fluid will still apply if container is < 100px */
+    height: 100px !important;
+}

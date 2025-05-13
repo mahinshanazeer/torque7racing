@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FF6F0F;
-    --secondary: #FFF0E6;
-    --light: #F8F8F9;
-    --dark: #001D23;
+    --primary: #00A8FF;  /* Vibrant blue for primary accents */
+    --secondary: #222222; /* Dark gray for secondary elements/backgrounds */
+    --light: #121212;    /* Main dark background color */
+    --dark: #E0E0E0;     /* Light gray for text */
 }
 
 .back-to-top {
@@ -33,17 +33,36 @@
 /*** Button ***/
 .btn {
     font-weight: 500;
-    transition: .5s;
+    transition: all .3s ease-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); /* Slightly adjusted default shadow */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35); /* Enhanced shadow on hover */
+}
+
+.btn:active {
+    transform: translateY(0px); /* Pressed effect */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Slightly reduced shadow for pressed effect */
 }
 
 .btn.btn-primary,
-.btn.btn-outline-primary:hover {
-    color: #FFFFFF;
+.btn.btn-outline-primary:hover { /* .btn-outline-primary:hover should also get the gradient if its background becomes --primary */
+    color: #FFFFFF; /* White text on primary button */
+    background: linear-gradient(180deg, var(--primary) 0%, #008ECC 100%); /* Subtle gradient for primary button */
+    border: none; /* Remove border if any for cleaner gradient look */
 }
 
 .btn.btn-primary:hover {
-    color: var(--primary);
-    background: transparent;
+    color: var(--primary); /* Text color changes */
+    background: var(--secondary); /* Background changes on hover, gradient is removed */
+    /* transform and box-shadow are inherited from .btn:hover */
+}
+
+.btn.btn-primary:active {
+    /* color and background remain from :hover or base .btn-primary */
+    /* transform and box-shadow are inherited from .btn:active */
 }
 
 .btn-square {
@@ -79,7 +98,7 @@
 
 .top-bar {
     height: 45px;
-    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    border-bottom: 1px solid rgba(0, 0, 0, .07); /* Darker border */
 }
 
 .navbar .dropdown-toggle::after {
@@ -94,21 +113,24 @@
 .navbar .navbar-nav .nav-link {
     margin-right: 30px;
     padding: 25px 0;
-    color: #FFFFFF;
+    color: var(--dark); /* Light text for navbar links */
     font-weight: 500;
     outline: none;
+    position: relative; /* For pseudo-element effects if needed */
+    transition: color .3s ease-out, text-shadow .3s ease-out;
 }
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
     color: var(--primary);
+    text-shadow: 0 0 8px var(--primary); /* Subtle glow effect */
 }
 
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
-        border-top: 1px solid rgba(0, 0, 0, .07);
-        background: var(--dark);
+        border-top: 1px solid rgba(255, 255, 255, .07); /* Lighter border for contrast */
+        background: var(--secondary); /* Dark background for mobile navbar */
     }
 
     .navbar .navbar-nav .nav-link {
@@ -146,7 +168,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0, 29, 35, .8);
+    background: rgba(18, 18, 18, .8); /* Dark overlay using --light base */
     z-index: 1;
 }
 
@@ -159,8 +181,8 @@
 .carousel-control-next-icon {
     width: 3rem;
     height: 3rem;
-    background-color: var(--dark);
-    border: 12px solid var(--dark);
+    background-color: var(--secondary); /* Dark background for carousel controls */
+    border: 12px solid var(--secondary); /* Dark border for carousel controls */
     border-radius: 3rem;
 }
 
@@ -181,12 +203,12 @@
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
-    background: linear-gradient(rgba(0, 29, 35, .8), rgba(0, 29, 35, .8)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(18, 18, 18, .8), rgba(18, 18, 18, .8)), url(../img/carousel-1.jpg) center center no-repeat; /* Dark overlay */
     background-size: cover;
 }
 
 .page-header .breadcrumb-item+.breadcrumb-item::before {
-    color: #999999;
+    color: var(--dark); /* Light color for breadcrumb separator */
 }
 
 
@@ -216,7 +238,7 @@
     justify-content: center;
     font-size: 12px;
     background: var(--primary);
-    color: #FFFFFF;
+    color: #FFFFFF; /* Keeping white text on primary background */
 }
 
 .causes-item .causes-overlay {
@@ -228,7 +250,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(18, 18, 18, .7); /* Darker overlay */
     overflow: hidden;
     opacity: 0;
     transition: .5s;
@@ -239,16 +261,38 @@
     opacity: 1;
 }
 
+/* Applying consistent card styling to .causes-item, .service-item, .team-item */
+.causes-item,
+.service-item,
+.team-item {
+    background-color: var(--secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Default softer shadow */
+    transition: transform .3s ease-out, box-shadow .3s ease-out, background-image .3s ease-out, border-color .3s ease-out; /* Added border-color to transition */
+    border-radius: 8px; /* Modern rounded corners for cards */
+    overflow: hidden; /* Ensures content like images respect the border-radius */
+    margin-bottom: 20px; /* Add some spacing between cards if they are stacked */
+    position: relative; /* Needed for pseudo-element overlay if that route is taken */
+    border: 1px solid transparent; /* Start with a transparent border */
+}
+
+.causes-item:hover,
+.service-item:hover,
+.team-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%); /* Subtle radial highlight */
+    border-color: var(--primary); /* Accent border on hover */
+}
+
 
 /*** Service ***/
-.service-item {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .06);
-}
+/* .service-item specific styles can be added here if needed, beyond the common card style */
+/* For example, if .service-item had unique padding or internal structure needs */
 
 
 /*** Donate ***/
 .donate {
-    background: rgba(0, 29, 35, .8);
+    background: rgba(18, 18, 18, .8); /* Dark background for donate section */
 }
 
 .btn-group .btn-light:hover,
@@ -259,10 +303,12 @@
 
 
 /*** Team ***/
+/* .team-item specific styles, like the img and team-text animations, are kept below */
+/* The common card styling (background, shadow, hover lift) is now applied from the rule above */
 .team-item img {
     position: relative;
     top: 0;
-    transition: .5s;
+    transition: .5s; /* This transition is for the image movement specifically */
 }
 
 .team-item:hover img {
@@ -272,7 +318,7 @@
 .team-item .team-text {
     position: relative;
     height: 100px;
-    transition: .5s;
+    transition: .5s;  /* This transition is for the text area expansion */
 }
 
 .team-item:hover .team-text {
@@ -282,7 +328,7 @@
 
 .team-item .team-text .team-social {
     opacity: 0;
-    transition: .5s;
+    transition: .5s; /* This transition is for the social icons fade-in */
 }
 
 .team-item:hover .team-text .team-social {
@@ -291,15 +337,16 @@
 
 .team-item .team-social .btn {
     display: inline-flex;
-    color: var(--primary);
-    background: #FFFFFF;
+    color: var(--dark); /* Light text */
+    background: var(--secondary); /* Dark background */
     border-radius: 40px;
+    /* Inherits general .btn box-shadow and transitions for base state */
+    /* Hover for these buttons is already defined to change background to --primary */
 }
 
-.team-item .team-social .btn:hover {
-    color: #FFFFFF;
-    background: var(--primary);
-}
+/* .team-item .team-social .btn:hover already has specific styles, ensuring they are not overridden by general .btn:hover if not desired. */
+/* Current .team-item .team-social .btn:hover changes background and color, general .btn:hover does transform and shadow. They should combine. */
+
 
 
 /*** Testimonial ***/
@@ -310,7 +357,7 @@
     left: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, var(--light) 0%, rgba(18, 18, 18, 0) 100%); /* Fade to transparent dark */
     z-index: 1;
 }
 
@@ -321,7 +368,7 @@
     right: 0;
     height: 100%;
     width: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to left, var(--light) 0%, rgba(18, 18, 18, 0) 100%); /* Fade to transparent dark */
     z-index: 1;
 }
 
@@ -356,7 +403,7 @@
 }
 
 .testimonial-carousel .owl-item.center .testimonial-text * {
-    color: var(--light) !important;
+    color: #FFFFFF !important; /* White text on primary background */
 }
 
 .testimonial-carousel .owl-item.center .testimonial-item img {
@@ -391,7 +438,7 @@
 
 .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
-    color: var(--dark);
+    color: var(--primary); /* Primary color for hover state */
 }
 
 
@@ -402,10 +449,10 @@
     margin-bottom: 5px;
     padding: 0;
     text-align: left;
-    color: rgba(255,255,255,0.5);
+    color: rgba(224, 224, 224, 0.5); /* Lighter text based on --dark */
     font-weight: normal;
     text-transform: capitalize;
-    transition: .3s;
+    transition: color .3s ease-out, letter-spacing .3s ease-out, text-shadow .3s ease-out; /* Added text-shadow to transition */
 }
 
 .footer .btn.btn-link::before {
@@ -413,36 +460,297 @@
     content: "\f105";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    color: rgba(255,255,255,0.5);
+    color: rgba(224, 224, 224, 0.5); /* Lighter text based on --dark */
     margin-right: 10px;
 }
 
 .footer .btn.btn-link:hover {
-    color: var(--light);
+    color: var(--dark); /* Light text color on hover */
     letter-spacing: 1px;
-    box-shadow: none;
+    box-shadow: none; /* Explicitly keeping no shadow for these links */
+    text-shadow: 0 0 5px rgba(224, 224, 224, 0.5); /* Subtle glow for footer links */
 }
 
 .footer .btn.btn-square {
-    color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.5);
+    color: rgba(224, 224, 224, 0.5); /* Lighter text based on --dark */
+    border: 1px solid rgba(224, 224, 224, 0.5); /* Lighter border based on --dark */
 }
 
 .footer .btn.btn-square:hover {
-    color: var(--secondary);
-    border-color: var(--light);
+    color: var(--primary); /* Primary color text on hover */
+    border-color: var(--primary); /* Primary color border on hover */
+    /* Inherits general .btn:hover for transform and shadow if desired, or can be customized */
 }
 
 .footer .copyright {
     padding: 25px 0;
     font-size: 15px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
+    border-top: 1px solid rgba(224, 224, 224, .1); /* Lighter border based on --dark */
 }
 
 .footer .copyright a {
-    color: var(--secondary);
+    color: var(--dark); /* Light text for copyright link */
 }
 
 .footer .copyright a:hover {
+    color: var(--primary); /* Primary color for copyright link on hover */
+}
+
+
+/********** Bootstrap Overrides **********/
+
+/* Alerts */
+.alert {
+    border-width: 1px; /* Ensure border is consistent */
+    border-style: solid;
+}
+
+.alert-light {
+    color: var(--dark);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.alert-primary {
+    color: #f8f9fa; /* Light text */
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+.alert-primary .alert-link {
+    color: #f8f9fa;
+    text-decoration: underline;
+}
+
+.alert-secondary {
+    color: var(--dark);
+    background-color: #333; /* Darker than --secondary */
+    border-color: #333;
+}
+.alert-secondary .alert-link {
+    color: var(--dark);
+    text-decoration: underline;
+}
+
+/* Ensure other contextual alerts have light text */
+.alert-success {
+    color: #f8f9fa;
+    background-color: #198754; /* Default BS green */
+    border-color: #198754;
+}
+.alert-success .alert-link { color: #f8f9fa; text-decoration: underline;}
+
+.alert-danger {
+    color: #f8f9fa;
+    background-color: #dc3545; /* Default BS red */
+    border-color: #dc3545;
+}
+.alert-danger .alert-link { color: #f8f9fa; text-decoration: underline;}
+
+.alert-warning {
+    color: #000; /* Dark text can be okay on yellow */
+    background-color: #ffc107; /* Default BS yellow */
+    border-color: #ffc107;
+}
+.alert-warning .alert-link { color: #000; text-decoration: underline;}
+
+.alert-info {
+    color: #f8f9fa;
+    background-color: #0dcaf0; /* Default BS cyan */
+    border-color: #0dcaf0;
+}
+.alert-info .alert-link { color: #f8f9fa; text-decoration: underline;}
+
+
+/* Badges */
+.badge.bg-light {
+    color: var(--secondary) !important; /* Dark text on light badge */
+    background-color: var(--dark) !important; /* Light background for badge */
+}
+.badge.bg-dark {
+    color: var(--light) !important;
+    background-color: var(--dark) !important; /* This is actually light gray, so text needs to be dark */
+}
+/* Standard badges bg-primary, etc text color is usually fine (white) */
+
+/* Modals */
+.modal-content {
+    background-color: var(--light);
+    color: var(--dark);
+    border: 1px solid rgba(224, 224, 224, 0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(224, 224, 224, 0.2);
+}
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Makes it white */
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(224, 224, 224, 0.2);
+}
+
+/* Forms */
+.form-control, .form-select {
+    background-color: var(--secondary);
+    color: var(--dark);
+    border: 1px solid #444; /* Slightly darker than --secondary for definition */
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--secondary);
+    color: var(--dark);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 168, 255, 0.25); /* primary focus ring */
+}
+.form-control::placeholder {
+    color: #888; /* Lighter gray for placeholder */
+}
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e0e0e0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* White arrow */
+}
+
+.form-check-input {
+    background-color: var(--secondary);
+    border-color: #444;
+}
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+.form-check-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 168, 255, 0.25);
+}
+.form-check-label {
+    color: var(--dark);
+}
+
+.input-group-text {
+    background-color: #333; /* Darker than form-control */
+    color: var(--dark);
+    border: 1px solid #444;
+}
+
+/* List Groups */
+.list-group-item {
+    background-color: var(--secondary);
+    color: var(--dark);
+    border: 1px solid rgba(224, 224, 224, 0.125);
+}
+a.list-group-item, button.list-group-item {
+    color: var(--dark);
+}
+a.list-group-item:hover, button.list-group-item:hover,
+a.list-group-item:focus, button.list-group-item:focus {
+    background-color: #333; /* Darken on hover */
+    color: var(--dark);
+}
+.list-group-item.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #FFFFFF;
+}
+
+/* Tables */
+.table {
+    color: var(--dark);
+    border-color: #444; /* Darker border for table itself and cells */
+}
+.table th, .table td {
+    border-color: #444;
+}
+.table thead th {
+    border-bottom-width: 2px; /* More prominent header bottom border */
+    border-bottom-color: #555;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: rgba(255, 255, 255, 0.03); /* Subtle stripe */
+    color: var(--dark);
+}
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(255, 255, 255, 0.05); /* Subtle hover */
+    color: var(--dark);
+}
+.table-light {
+    --bs-table-bg: var(--secondary);
+    color: var(--dark);
+    border-color: #444;
+}
+/* For .table-primary, .table-success etc, default BS5 often uses CSS vars like --bs-table-bg-state.
+   We might need to ensure their text color is light. */
+.table-primary { --bs-table-bg: var(--primary); color: #fff; border-color: var(--primary);}
+.table-secondary { --bs-table-bg: #333; color: var(--dark); border-color: #333;} /* Example */
+
+
+/* Pagination */
+.page-item .page-link {
+    background-color: var(--secondary);
+    color: var(--dark);
+    border: 1px solid #444;
+}
+.page-item .page-link:hover {
+    background-color: #333;
+    color: var(--dark);
+}
+.page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #FFFFFF;
+}
+.page-item.disabled .page-link {
+    background-color: var(--secondary);
+    color: #6c757d; /* Standard disabled color */
+    border-color: #444;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+    background-color: var(--secondary);
+    color: var(--dark);
+    border: 1px solid rgba(224, 224, 224, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Standard BS shadow, looks ok on dark */
+}
+.dropdown-item {
+    color: var(--dark);
+}
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #333;
+    color: var(--dark);
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: var(--primary);
+    color: #FFFFFF;
+}
+.dropdown-divider {
+    border-top: 1px solid rgba(224, 224, 224, 0.15);
+}
+
+/* Breadcrumbs */
+.breadcrumb-item a {
     color: var(--primary);
+    text-decoration: none;
+}
+.breadcrumb-item a:hover {
+    color: #008ECC; /* Darker primary */
+}
+.breadcrumb-item.active {
+    color: #6c757d; /* Standard muted color for active breadcrumb */
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    color: var(--dark); /* Separator color */
+}
+
+/* Progress Bars */
+.progress {
+    background-color: #333; /* Darker background for the track */
+    height: 1rem; /* Default BS height */
+}
+/* .progress-bar already has background-color from its contextual classes (bg-primary etc) */
+.progress-bar {
+    color: #FFFFFF; /* Ensure text on progress bar is light */
+}
+
+/* Close button (general, for things like toasts if not modals) */
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Makes it white */
 }
